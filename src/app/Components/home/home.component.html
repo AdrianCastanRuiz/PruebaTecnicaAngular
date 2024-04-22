@@ -1,5 +1,5 @@
 <header>
-  <h1>SuperHeros</h1>
+  <h1>SuperHeroes</h1>
 </header>
 <main>
   <input
@@ -11,7 +11,7 @@
   />
   <div class="new">
     <button [formControl]="name" (click)="openNewHeroModal()" mat-raised-button>
-      Add new SuperHeroe
+      Add new SuperHero
     </button>
   </div>
   <app-superheroes *ngFor="let heroe of heros" [superHeroe]="heroe" />
