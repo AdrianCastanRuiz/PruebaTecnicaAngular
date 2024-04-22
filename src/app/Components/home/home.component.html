@@ -1,0 +1,18 @@
+<header>
+  <h1>SuperHeros</h1>
+</header>
+<main>
+  <input
+    class="search"
+    [formControl]="search"
+    matInput
+    placeholder="Search"
+    type="text"
+  />
+  <div class="new">
+    <button [formControl]="name" (click)="openNewHeroModal()" mat-raised-button>
+      Add new SuperHeroe
+    </button>
+  </div>
+  <app-superheroes *ngFor="let heroe of heros" [superHeroe]="heroe" />
+</main>

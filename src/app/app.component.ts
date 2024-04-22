@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { HomeComponent } from './Components/home/home.component';
+import { EditFormComponent } from './edit-form/edit-form.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet, HomeComponent, EditFormComponent],
 })
-export class AppComponent {
-  title = 'PruebaTecnica';
-}
+export class AppComponent {}

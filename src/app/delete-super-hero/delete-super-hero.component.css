@@ -1,0 +1,15 @@
+div {
+  background-color: aliceblue;
+  padding: 5%;
+  border: 2px solid black;
+}
+
+button {
+  margin: 2%;
+  padding: 2%;
+  border: 2px solid black;
+}
+
+.delete:hover {
+  color: red;
+}

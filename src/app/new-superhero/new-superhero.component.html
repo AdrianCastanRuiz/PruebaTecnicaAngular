@@ -1,0 +1,7 @@
+<div>
+  <h2>Add a new SuperHero!</h2>
+
+  <input id="name" type="text" [formControl]="newHero" />
+  <button class="save" (click)="saveNewHero()">Save</button>
+  <button type="button" (click)="closeDialog()">Cancel</button>
+</div>

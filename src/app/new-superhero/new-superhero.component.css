@@ -1,0 +1,20 @@
+div {
+  background-color: aliceblue;
+  padding: 5%;
+  border: 2px solid black;
+}
+
+button {
+  margin: 2%;
+  padding: 1%;
+  border: 2px solid black;
+  width: 80px;
+}
+
+input {
+  height: 5%;
+}
+
+.save:hover {
+  background-color: rgb(42, 128, 42);
+}
