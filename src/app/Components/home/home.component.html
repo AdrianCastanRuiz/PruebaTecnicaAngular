@@ -1,6 +1,10 @@
 <header>
   <h1>SuperHeroes</h1>
 </header>
+<div *ngIf="showSpinner" class="velo">
+  <mat-progress-spinner class="spinner" mode="indeterminate" [color]="color">
+  </mat-progress-spinner>
+</div>
 <main>
   <input
     class="search"
@@ -10,9 +14,25 @@
     type="text"
   />
   <div class="new">
-    <button [formControl]="name" (click)="openNewHeroModal()" mat-raised-button>
+    <button (click)="openNewHeroModal()" mat-raised-button>
       Add new SuperHero
     </button>
   </div>
-  <app-superheroes *ngFor="let heroe of heros" [superHeroe]="heroe" />
+  <app-superheroes *ngFor="let heroe of heroes.data" [superHeroe]="heroe" />
+  <p *ngIf="!heroes.data.length">No heroes found.</p>
+  <p>
+    Page {{ heroes.totalPages ? heroes.pageNumber + 1 : "0" }} of
+    {{ heroes.totalPages }}
+  </p>
+  <button [disabled]="heroes.pageNumber == 0" (click)="previousPage()">
+    Back
+  </button>
+  <button
+    [disabled]="
+      heroes.pageNumber == heroes.totalPages - 1 || heroes.totalPages == 0
+    "
+    (click)="nextPage()"
+  >
+    Next
+  </button>
 </main>

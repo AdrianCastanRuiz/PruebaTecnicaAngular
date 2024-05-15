@@ -4,8 +4,12 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { SuperheroesService, SuperHero } from '../services/superheroes.service';
+import {
+  SuperheroesService,
+  SuperHero,
+} from '../../services/superheroes.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -25,7 +29,8 @@ export class EditFormComponent implements OnInit {
   constructor(
     @Optional() public dialogRef: MatDialogRef<EditFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    private superheroService: SuperheroesService
+    private superheroService: SuperheroesService,
+    private spinnerService: SpinnerService
   ) {}
   closeDialog(): void {
     this.dialogRef.close();
@@ -35,16 +40,27 @@ export class EditFormComponent implements OnInit {
       this.name.setValue(hero.name);
       this.hero.name = hero.name;
     });
-    this.name.valueChanges.subscribe((newName) => console.log(newName));
+    this.name.valueChanges.subscribe((newName) => {
+      if (newName)
+        this.name.setValue(newName.toUpperCase(), { emitEvent: false });
+    });
   }
   saveName() {
-    if (this.name.value !== null && this.name.value !== this.hero.name)
+    if (this.name.value !== null && this.name.value !== this.hero.name) {
+      this.spinnerService.$spinner.next(true);
+
       this.superheroService
         .updateHero(this.data.id, {
           name: this.name.value,
         })
         .subscribe((result) => {
-          if (result === true) this.closeDialog();
+          if (result === true) {
+            this.closeDialog();
+            this.spinnerService.$spinner.next(false);
+          } else {
+            this.spinnerService.$spinner.next(false);
+          }
         });
+    }
   }
 }

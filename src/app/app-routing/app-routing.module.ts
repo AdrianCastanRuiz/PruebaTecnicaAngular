@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { EditFormComponent } from '../edit-form/edit-form.component';
+import { EditFormComponent } from '../Components/edit-form/edit-form.component';
 import { HomeComponent } from '../Components/home/home.component';
 
 const routes: Routes = [

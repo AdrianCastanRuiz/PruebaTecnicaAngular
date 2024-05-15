@@ -1,6 +1,7 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SuperheroesService } from '../services/superheroes.service';
+import { SuperheroesService } from '../../services/superheroes.service';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-delete-super-hero',
@@ -13,16 +14,21 @@ export class DeleteSuperHeroComponent {
   constructor(
     @Optional() public dialogRef: MatDialogRef<DeleteSuperHeroComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    private superheroService: SuperheroesService
+    private superheroService: SuperheroesService,
+    private spinnerService: SpinnerService
   ) {}
 
   deleteHero() {
+    this.spinnerService.$spinner.next(true);
+
     this.superheroService.deleteHero(this.data.id).subscribe((result) => {
       if (result === true) {
-        alert('hero deleted');
+        this.spinnerService.$spinner.next(false);
+
         this.closeDialog();
       } else {
         alert('something went wrong');
+        this.spinnerService.$spinner.next(false);
       }
     });
   }

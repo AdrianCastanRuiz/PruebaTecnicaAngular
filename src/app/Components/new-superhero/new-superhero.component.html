@@ -1,7 +1,14 @@
 <div>
   <h2>Add a new SuperHero!</h2>
 
-  <input id="name" type="text" [formControl]="newHero" />
+  <label for="">Name: </label>
+
+  <input
+    id="name"
+    type="text"
+    [ngModel]="newHero"
+    (ngModelChange)="newHero = $event.toUpperCase()"
+  />
   <button class="save" (click)="saveNewHero()">Save</button>
   <button type="button" (click)="closeDialog()">Cancel</button>
 </div>

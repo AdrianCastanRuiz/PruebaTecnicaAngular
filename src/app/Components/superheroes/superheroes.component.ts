@@ -5,13 +5,14 @@ import {
 } from '../../services/superheroes.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { EditFormComponent } from '../../edit-form/edit-form.component';
-import { DeleteSuperHeroComponent } from '../../delete-super-hero/delete-super-hero.component';
+import { EditFormComponent } from '../edit-form/edit-form.component';
+import { DeleteSuperHeroComponent } from '../delete-super-hero/delete-super-hero.component';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-superheroes',
   standalone: true,
-  imports: [MatCardModule, MatDialogModule],
+  imports: [MatCardModule, MatDialogModule, TitleCasePipe],
   templateUrl: './superheroes.component.html',
   styleUrls: ['./superheroes.component.css'],
 })
